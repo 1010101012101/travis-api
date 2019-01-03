@@ -46,7 +46,7 @@ module Travis::API::V3
     end
 
     def user_preferences
-      Models::Preferences.new(preferences).tap { |prefs| prefs.sync(self, :preferences) }
+      Models::UserPreferences.new(preferences).tap { |prefs| prefs.sync(self, :preferences) }
     end
   end
 end

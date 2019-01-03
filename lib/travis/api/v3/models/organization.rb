@@ -17,5 +17,9 @@ module Travis::API::V3
     end
 
     alias members users
+
+    def user_preferences
+      Models::OrganizationPreferences.new(preferences).tap { |prefs| prefs.sync(self, :preferences) }
+    end
   end
 end
