@@ -63,7 +63,7 @@ describe Travis::API::V3::Services::Preferences::ForOrganization, set_app: true 
 
         describe 'some preference has been set' do
           before do
-            organization.user_preferences.update(:members_insights, true)
+            organization.preferences.update(:members_insights, true)
           end
 
           it 'returns the set value merged with the defaults' do
