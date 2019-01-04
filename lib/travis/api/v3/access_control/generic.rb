@@ -141,13 +141,11 @@ module Travis::API::V3
       visible? key_pair.repository
     end
 
-    def user_preferences_visible?(preferences)
-      true
+    def preferences_visible?(preferences)
+      adminable? preferences.parent
     end
-
-    def organization_preferences_visible?(preferences)
-      true
-    end
+    alias_method :user_preferences_visible?, :preferences_visible?
+    alias_method :organization_preferences_visible?, :preferences_visible?
 
     def organization_visible?(organization)
       full_access? or public_mode?(organization)

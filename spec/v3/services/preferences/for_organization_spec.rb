@@ -20,7 +20,8 @@ describe Travis::API::V3::Services::Preferences::ForOrganization, set_app: true 
     end
 
     describe 'user is not a member' do
-      it { expect(last_response.status).to eq(403) }
+      it { expect(last_response.status).to eq(404) }
+      it { expect(parsed_body['error_message']).to include('insufficient access')}
     end
 
     describe 'user is a member' do
@@ -28,7 +29,8 @@ describe Travis::API::V3::Services::Preferences::ForOrganization, set_app: true 
 
       describe 'as a regular member' do
         let(:role) { 'member' }
-        it { expect(last_response.status).to eq(403) }
+        it { expect(last_response.status).to eq(404) }
+        it { expect(parsed_body['error_message']).to include('insufficient access')}
       end
 
       describe 'as an admin' do
